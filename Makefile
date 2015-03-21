@@ -12,7 +12,8 @@ OS = linux
 
 
 CC = gcc
-CFLAGS = -O2 -finline-functions -fno-strict-aliasing -g
+CFLAGS += $(CPPFLAGS)
+CFLAGS += -O2 -finline-functions -fno-strict-aliasing -g
 CFLAGS += -Wall -Wwrite-strings
 LDFLAGS += -g -Wl,--as-needed
 LD = gcc
