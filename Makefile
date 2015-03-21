@@ -14,7 +14,7 @@ OS = linux
 CC = gcc
 CFLAGS = -O2 -finline-functions -fno-strict-aliasing -g
 CFLAGS += -Wall -Wwrite-strings
-LDFLAGS += -g
+LDFLAGS += -g -Wl,--as-needed
 LD = gcc
 AR = ar
 
@@ -84,7 +84,7 @@ HAVE_LLVM=no
 else
 LLVM_PROGS := sparse-llvm
 $(LLVM_PROGS): LD := g++
-LLVM_LDFLAGS := $(shell llvm-config --ldflags)
+LLVM_LDFLAGS := -Wl,--no-as-needed $(shell llvm-config --ldflags) -Wl,--as-needed
 LLVM_CFLAGS := $(shell llvm-config --cflags | sed -e "s/-DNDEBUG//g")
 LLVM_LIBS := $(shell llvm-config --libs)
 LLVM_LIBS += $(shell llvm-config --system-libs 2>/dev/null)
