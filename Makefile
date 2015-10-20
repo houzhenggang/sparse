@@ -86,7 +86,7 @@ else
 LLVM_PROGS := sparse-llvm
 $(LLVM_PROGS): LD := g++
 LLVM_LDFLAGS := -Wl,--no-as-needed $(shell llvm-config --ldflags) -Wl,--as-needed
-LLVM_CFLAGS := $(shell llvm-config --cflags | sed -e "s/-DNDEBUG//g")
+LLVM_CFLAGS := $(shell llvm-config --cflags | sed -e "s/-DNDEBUG//g" | sed -e "s/-Wcovered-switch-default//g")
 LLVM_LIBS := $(shell llvm-config --libs)
 LLVM_LIBS += $(shell llvm-config --system-libs 2>/dev/null)
 PROGRAMS += $(LLVM_PROGS)
